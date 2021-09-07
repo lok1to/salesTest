@@ -1,0 +1,76 @@
+﻿@model Sales.Models.ReceiptModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReceiptModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseDate)
+        </dd>
+    </dl>
+</div>
+
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <th>Tax</th>
+        <th>Total</th>
+    </tr>
+
+
+    @foreach (var item in Model.ReceiptDetails.ToList())
+    {
+        <tr>
+            <td>
+                @item.Item.Name<br />
+            </td>
+            <td>
+                @item.Quantity<br />
+            </td>
+            <td>
+                @item.Price<br />
+            </td>
+            <td>
+                @item.TaxAmount<br />
+            </td>
+            <td>
+                @item.Total<br />
+            </td>
+
+        </tr>
+    }
+
+    <tr>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.TotalTaxAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Total)<br />
+        </td>
+
+    </tr>
+</table>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
